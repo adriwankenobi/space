@@ -1,0 +1,148 @@
+fileFormatVersion: 2
+guid: 12f6c472e9948514091b3c6b3795c5c9
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    textureFormat: -2
+    compressionQuality: 50
+  spriteSheet:
+    sprites:
+    - name: estrellas_0
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 427
+        width: 122
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellas_1
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 521
+        width: 121
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellas_2
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 429
+        width: 122
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellas_3
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 294
+        width: 121
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellas_4
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 314
+        width: 121
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellas_5
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 300
+        width: 121
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellas_6
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 131
+        width: 120
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellas_7
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 108
+        width: 120
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellas_8
+      rect:
+        serializedVersion: 2
+        x: 686
+        y: 102
+        width: 121
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellas_9
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 138
+        width: 122
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellas_10
+      rect:
+        serializedVersion: 2
+        x: 620
+        y: 5
+        width: 539
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+  spritePackingTag: 
+  userData: 
