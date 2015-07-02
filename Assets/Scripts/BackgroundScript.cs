@@ -42,10 +42,7 @@ public class BackgroundScript : MonoBehaviour
 				).ToList();
 		}
 	}
-	
-	
-	
-	
+
 	void Update()
 	{
 		// Movement
