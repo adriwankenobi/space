@@ -18,6 +18,6 @@ public class PlayButtonScript : MonoBehaviour {
 	void OnMouseUpAsButton() {   
 
 		// Load the level
-		Application.LoadLevel("Scene1");
+		Application.LoadLevel("Level");
 	}
 }
