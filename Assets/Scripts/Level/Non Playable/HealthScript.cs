@@ -31,7 +31,14 @@ public class HealthScript : MonoBehaviour {
 				{
 					SpecialEffectsScript.Instance.Boom(transform.position);
 					SoundEffectsScript.Instance.PlayBoomSound();
-					Destroy(gameObject);
+
+					if (isEnemy)
+					{
+						transform.gameObject.GetComponent<EnemyScript>().GoBackAndNew();
+					}
+					else {
+						Destroy(gameObject);
+					}
 				}
 			}
 		}

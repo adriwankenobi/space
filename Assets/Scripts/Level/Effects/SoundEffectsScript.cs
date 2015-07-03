@@ -9,10 +9,6 @@ public class SoundEffectsScript : MonoBehaviour {
 	// Singleton
 	public static SoundEffectsScript Instance;
 	
-	public AudioClip boomSound;
-	public AudioClip missileSound;
-	public AudioClip lightSound;
-	
 	void Awake()
 	{
 		// Register singleton
@@ -35,12 +31,6 @@ public class SoundEffectsScript : MonoBehaviour {
 	
 	public void PlayLightSound()
 	{
-		PlaySound(lightSound);
-	}
-
-	private void PlaySound(AudioClip clip)
-	{
-		// Not 3D sound, so position don't matter
-		AudioSource.PlayClipAtPoint(clip, transform.position);
+		gameObject.GetComponent<AudioSource>().Play();
 	}
 }

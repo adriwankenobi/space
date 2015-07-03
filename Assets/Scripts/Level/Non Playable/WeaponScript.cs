@@ -8,6 +8,7 @@ public class WeaponScript : MonoBehaviour {
 
 	public Transform shotReusable;
 	public float timeToWaitBetweenShots = 0.25f;
+	public int type;
 
 	private float timeBetweenShots;
 	
@@ -37,8 +38,21 @@ public class WeaponScript : MonoBehaviour {
 			
 			// Asign current position
 			shotObject.position = transform.position;
+
+			// Assign rotation
+			switch (type)
+			{
+				case 1:
+					shotObject.Rotate(0, 0, -30);
+					break;
+				case 2:
+					shotObject.Rotate(0, 0, 30);
+					break;
+				default:
+					break;
+			}
 			
-			// Vemos si es fuego enemigo
+			// If enemy fire
 			ShotScript shot = shotObject.gameObject.GetComponent<ShotScript>();
 			if (shot != null)
 			{

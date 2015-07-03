@@ -9,6 +9,7 @@ public class EnemyScript : MonoBehaviour {
 
 	private bool isActive;
 	private WeaponScript[] weapons;
+	public int distance;
 	
 	void Awake()
 	{
@@ -43,7 +44,7 @@ public class EnemyScript : MonoBehaviour {
 			// It's not in camera anymore
 			if (!GetComponent<Renderer>().IsVisibleFrom(Camera.main))
 			{
-				Destroy(gameObject);
+				GoBackAndNew();
 			}
 		}
 	}
@@ -61,5 +62,11 @@ public class EnemyScript : MonoBehaviour {
 		{
 			weapon.enabled = state;
 		}
+	}
+
+	public void GoBackAndNew()
+	{
+		ChangeState(false);
+		transform.position = new Vector3(transform.position.x + distance, transform.position.y, transform.position.z);
 	}
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 /// Script for background infinite movement
 /// </summary>
 
-public class BackgroundScript : MonoBehaviour 
+public class AutoMoveScript : MonoBehaviour 
 {
 
 	public Vector2 speed = new Vector2(2, 2);
@@ -50,7 +50,7 @@ public class BackgroundScript : MonoBehaviour
 			speed.x * direction.x,
 			speed.y * direction.y,
 			0);
-		
+
 		movement *= Time.deltaTime;
 		transform.Translate(movement);
 
