@@ -30,7 +30,7 @@ public class HealthScript : MonoBehaviour {
 				if (health <= 0)
 				{
 					SpecialEffectsScript.Instance.Boom(transform.position);
-					SoundEffectsScript.Instance.PlayBoomSound();
+					gameObject.GetComponent<AudioSource>().Play();
 
 					if (isEnemy)
 					{

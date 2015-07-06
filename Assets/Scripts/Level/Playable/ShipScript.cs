@@ -31,12 +31,11 @@ public class ShipScript : MonoBehaviour {
 		if (shot && !pauseSript.isPaused)
 		{
 			// Weapon needs to attack
-			WeaponScript weapon = GetComponent<WeaponScript>();
+			WeaponScript weapon = GetComponentInChildren<WeaponScript>();
 			if (weapon != null)
 			{
 				// False because player is not the enemy
 				weapon.Attack(false);
-				SoundEffectsScript.Instance.PlayMissileSound();
 			}
 		}
 			

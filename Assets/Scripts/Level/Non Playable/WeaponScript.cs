@@ -58,7 +58,10 @@ public class WeaponScript : MonoBehaviour {
 			{
 				shot.isEnemyShot = isEnemy;
 			}
-			
+
+			// Play laser sound
+			gameObject.GetComponent<AudioSource>().Play();
+
 			// Auto move to the right
 			MovementScript movement = shotObject.gameObject.GetComponent<MovementScript>();
 			if (movement != null)

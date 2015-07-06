@@ -37,7 +37,6 @@ public class EnemyScript : MonoBehaviour {
 				// Auto shoot
 				if (weapon != null && weapon.CanAttack) {
 					weapon.Attack(true);
-					SoundEffectsScript.Instance.PlayLightSound();
 				}
 			}
 
@@ -68,5 +67,7 @@ public class EnemyScript : MonoBehaviour {
 	{
 		ChangeState(false);
 		transform.position = new Vector3(transform.position.x + distance, transform.position.y, transform.position.z);
+		HealthScript healthSript = GetComponent<HealthScript>();
+		healthSript.health = 2;
 	}
 }

@@ -8,27 +8,35 @@ public class PauseScript : MonoBehaviour {
 
 	public bool isPaused = false;
 	public Transform backButton;
-
 	private BackScript backtButtonScript;
-	
-	void Start () {
+
+	private AudioSource[] allAudioSources;
+
+	void Awake()
+	{
+		allAudioSources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
+	}
+
+	void Start ()
+	{
 
 	}
 
-	void Update () {
+	void Update ()
+	{
 
 		// When Escape key is pressed
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			isPaused = !isPaused;
+
+			// Pause or UnPause the audio
+			SetAllAudio();
 
 			// Check if is paused
 			if (isPaused) {
 
 				// Stops the time
 				Time.timeScale = 0;
-
-				// Stops the sounds
-				GetComponent<AudioSource>().Pause();
 
 				// Create backButton object in the center of the camera
 				var backButtonTransform = Instantiate(backButton) as Transform;
@@ -46,17 +54,29 @@ public class PauseScript : MonoBehaviour {
 				// Sets the time
 				Time.timeScale = 1;
 
-				// Continue the sounds
-				GetComponent<AudioSource>().Play();
-
 				// Destroy the backButton object
 				backtButtonScript.destroy();
 			}
 		}
 	}
 
-	void OnGUI() {
+	void OnGUI()
+	{
 
+	}
+
+	private void SetAllAudio() {
+		for(var i=0; i < allAudioSources.Length; i++)
+		{
+			if (isPaused)
+			{
+				allAudioSources[i].Pause();
+			}
+			else
+			{
+				allAudioSources[i].UnPause();
+			}
+		}
 	}
 
 }
