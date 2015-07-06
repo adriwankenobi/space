@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-/// <summary>
-/// Special effects utils
-/// </summary>
+/*
+ * Special effects utils
+ */ 
+
 public class SpecialEffectsScript : MonoBehaviour {
 
 	// Singleton
-	public static SpecialEffectsScript Instance;
+	public static SpecialEffectsScript INSTANCE;
 	
 	public ParticleSystem smokeEffect;
 	public ParticleSystem disbandEffect;
@@ -15,12 +16,12 @@ public class SpecialEffectsScript : MonoBehaviour {
 	void Awake()
 	{
 		// Register singleton
-		if (Instance != null)
+		if (INSTANCE != null)
 		{
 			Debug.LogError("Too many instances of SpecialEffects!");
 		}
 		
-		Instance = this;
+		INSTANCE = this;
 	}
 
 	public void Boom(Vector3 position)

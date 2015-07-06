@@ -29,12 +29,12 @@ public class HealthScript : MonoBehaviour {
 				// If death
 				if (health <= 0)
 				{
-					SpecialEffectsScript.Instance.Boom(transform.position);
+					SpecialEffectsScript.INSTANCE.Boom(transform.position);
 					gameObject.GetComponent<AudioSource>().Play();
 
 					if (isEnemy)
 					{
-						transform.gameObject.GetComponent<EnemyScript>().GoBackAndNew();
+						transform.gameObject.GetComponent<EnemyShipScript>().GoBackAndNew();
 					}
 					else {
 						Destroy(gameObject);

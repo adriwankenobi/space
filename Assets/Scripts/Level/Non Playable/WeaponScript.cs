@@ -63,10 +63,10 @@ public class WeaponScript : MonoBehaviour {
 			gameObject.GetComponent<AudioSource>().Play();
 
 			// Auto move to the right
-			MovementScript movement = shotObject.gameObject.GetComponent<MovementScript>();
+			RigibodyMovementScript movement = shotObject.gameObject.GetComponent<RigibodyMovementScript>();
 			if (movement != null)
 			{
-				movement.direction = this.transform.right;
+				movement.Direction = this.transform.right;
 			}
 		}
 	}

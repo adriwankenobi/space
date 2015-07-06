@@ -1,8 +1,9 @@
 using UnityEngine;
 
-/// <summary>
-/// Script for rendering utils
-/// </summary>
+/*
+ * Rendering utils
+ */
+
 public static class RendererExtensions
 {
 	// Checks if renderer object is visible from camera
