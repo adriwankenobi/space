@@ -18,11 +18,11 @@ public class RigibodyMoveItem : MoveItem {
 		switch (type)
 		{
 		case Type.ENEMY_SHIP_TYPE_1: 
-			return new EnemyShip1Item();
+			return new EnemyShip1MoveItem();
 		case Type.LASER_RED: 
-			return new LaserRedItem();
+			return new LaserRedMoveItem();
 		case Type.LASER_BLUE: 
-			return new LaserBlueItem();
+			return new LaserBlueMoveItem();
 		default: 
 			throw new System.ArgumentException("Incorrect RigibodyMoveItem.Type " + type.ToString());
 		}

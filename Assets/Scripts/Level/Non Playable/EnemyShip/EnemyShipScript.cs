@@ -7,9 +7,10 @@ using System.Collections;
 
 public class EnemyShipScript : MonoBehaviour {
 
+	private const int OFFSET = 20;
+
 	private bool isActive;
 	private WeaponScript[] weapons;
-	public int distance;
 	
 	void Awake()
 	{
@@ -43,7 +44,7 @@ public class EnemyShipScript : MonoBehaviour {
 			// It's not in camera anymore
 			if (!GetComponent<Renderer>().IsVisibleFrom(Camera.main))
 			{
-				GoBackAndNew();
+				Reset();
 			}
 		}
 	}
@@ -63,11 +64,11 @@ public class EnemyShipScript : MonoBehaviour {
 		}
 	}
 
-	public void GoBackAndNew()
+	// Reset ship
+	public void Reset()
 	{
 		ChangeState(false);
-		transform.position = new Vector3(transform.position.x + distance, transform.position.y, transform.position.z);
-		HealthScript healthSript = GetComponent<HealthScript>();
-		healthSript.health = 2;
+		transform.position = new Vector3(transform.position.x + OFFSET, transform.position.y, transform.position.z);
+		GetComponent<HealthScript>().Reset();
 	}
 }
