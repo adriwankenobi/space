@@ -52,7 +52,7 @@ public class WeaponScript : MonoBehaviour {
 			LaserScript laserScript = shotObject.gameObject.GetComponent<LaserScript>();
 			if (laserScript != null)
 			{
-				laserScript.isEnemyShot = isEnemy;
+				laserScript.IsEnemy = isEnemy;
 			}
 
 			// Play laser sound

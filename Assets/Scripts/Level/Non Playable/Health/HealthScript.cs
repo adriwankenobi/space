@@ -24,9 +24,9 @@ public class HealthScript : MonoBehaviour {
 		if (laser != null)
 		{
 			// Check if enemy or friend
-			if (laser.isEnemyShot != item.IsEnemy)
+			if (laser.IsEnemy != item.IsEnemy)
 			{
-				item.Health -= laser.damage;
+				item.Health -= laser.Damage;
 				
 				// Destroy the laser
 				// WARNING: Only object not the laser, or script would be destroyed as well
