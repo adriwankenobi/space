@@ -1,29 +1,39 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-/// <summary>
-/// Script for back button
-/// </summary>
+/*
+ * Script for back button
+ */
 
 public class BackScript : MonoBehaviour {
-	
-	void Start () {
-	
-	}
 
-	void Update () {
-	
-	}
+
+	#if UNITY_WEBPLAYER || UNITY_EDITOR
 
 	void OnMouseUpAsButton() {
-		// Set the time
-		Time.timeScale = 1;
-
-		// Launch the menu
-		Application.LoadLevel("Menu");
+		LoadMenu ();
 	}
 
-	public void destroy() {
-		Destroy(gameObject);
+	#endif
+
+	#if UNITY_ANDROID
+
+	void Update()
+	{
+		if (Input.touchCount > 0)
+		{
+			LoadMenu();
+		}
+	}
+	
+	#endif
+
+	private void LoadMenu()
+	{
+		// Set the time
+		Time.timeScale = 1;
+		
+		// Launch the menu
+		Application.LoadLevel(Scenes.MENU);
 	}
 }

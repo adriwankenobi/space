@@ -1,20 +1,34 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Script for exit button
-/// </summary>
+/*
+ * Script for exit button
+ */
 
 public class ExitButtonScript : MonoBehaviour {
-	
-	void Start () {
-	
+
+	#if UNITY_WEBPLAYER || UNITY_EDITOR
+
+	void Awake()
+	{
+		Destroy(gameObject);
 	}
 
-	void Update () {
-	
-	}
+	#endif
 
-	void OnMouseUpAsButton() {
+	#if UNITY_ANDROID
+
+	void Update()
+	{
+		if (Input.touchCount > 0)
+		{
+			Exit();
+		}
+	}
+	
+	#endif
+	
+	private void Exit()
+	{
 		// Exit from app
 		Application.Quit();
 	}

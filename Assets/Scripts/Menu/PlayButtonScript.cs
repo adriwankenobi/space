@@ -1,23 +1,35 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Script for play button
-/// </summary>
+/*
+ * Script for play button
+ */
 
 public class PlayButtonScript : MonoBehaviour {
+
+	#if UNITY_WEBPLAYER || UNITY_EDITOR
 	
-	void Start () {
-	
+	void OnMouseUpAsButton()
+	{
+		LoadLevel();
 	}
 
-	void Update () {
-	
+	#endif
+
+	#if UNITY_ANDROID
+
+	void Update()
+	{
+		if (Input.touchCount > 0)
+		{
+			LoadLevel();
+		}
 	}
+	
+	#endif
 
-	// When clicked
-	void OnMouseUpAsButton() {   
-
+	private void LoadLevel()
+	{
 		// Load the level
-		Application.LoadLevel("Level");
+		Application.LoadLevel(Scenes.LEVEL);
 	}
 }

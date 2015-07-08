@@ -9,7 +9,7 @@ public class PauseScript : MonoBehaviour {
 	public Transform backButton;
 
 	public bool isPaused = false;
-	private BackScript backtButtonScript;
+	private Transform currentBackButton;
 
 	private AudioSource[] allAudioSources;
 
@@ -35,15 +35,12 @@ public class PauseScript : MonoBehaviour {
 				Time.timeScale = 0;
 
 				// Create backButton object in the center of the camera
-				var backButtonTransform = Instantiate(backButton) as Transform;
-				backButtonTransform.position = new Vector3(
+				currentBackButton = Instantiate(backButton) as Transform;
+				backButton.position = new Vector3(
 						Camera.main.transform.position.x,
 						Camera.main.transform.position.y,
 						transform.position.z
 				);
-
-				// Get the script from the button
-				backtButtonScript = backButtonTransform.gameObject.GetComponent<BackScript>();
 
 			} else {
 
@@ -51,7 +48,10 @@ public class PauseScript : MonoBehaviour {
 				Time.timeScale = 1;
 
 				// Destroy the backButton object
-				backtButtonScript.destroy();
+				if (currentBackButton != null)
+				{
+					Destroy(currentBackButton.gameObject);
+				}
 			}
 		}
 	}

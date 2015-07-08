@@ -7,26 +7,32 @@ using System.Collections;
 
 public class PlayerShipScript : MonoBehaviour {
 
-	public Vector2 speed = new Vector2(3, 3);
+	public RigibodyMoveItem.Type itemType;
+	
+	private RigibodyMoveItem item;
 	private Vector2 movement;
+	
+	void Awake()
+	{
+		item = RigibodyMoveItem.create(itemType);
+	}
 
 	void Update()
 	{
 		// Get direction input from keyboard
-		float inputX = Input.GetAxis("Horizontal");
-		float inputY = Input.GetAxis("Vertical");
+		float inputX = Input.GetAxis(Inputs.HORIZONTAL);
+		float inputY = Input.GetAxis(Inputs.VERTICAL);
 		
 		// Move accordingly
 		movement = new Vector2(
-			speed.x * inputX,
-			speed.y * inputY);
+			item.Speed.x * inputX,
+			item.Speed.y * inputY);
 
 		// Get shoot input from keyboard
-		bool shot = Input.GetButtonDown("Fire1");
-		shot |= Input.GetButtonDown("Fire2");
+		bool shot = Input.GetButtonDown(Inputs.FIRE_1) | Input.GetButtonDown(Inputs.FIRE_2);
 
 		// Get pauseScript from components
-		PauseScript pauseSript = GameObject.Find("PauseMenu").GetComponent<PauseScript>();
+		PauseScript pauseSript = GameObject.Find(SpaceObjects.PAUSE_MENU).GetComponent<PauseScript>();
 
 		// If player shoot (and game not paused)
 		if (shot && !pauseSript.isPaused)
@@ -71,26 +77,11 @@ public class PlayerShipScript : MonoBehaviour {
 	{
 		GetComponent<Rigidbody2D>().velocity = movement;
 	}
-
-	void Awake()
-	{
-
-	}
-
-	void Start()
-	{
-
-	}
-
-	void Destroy()
-	{
-
-	}
 	
 	void OnDestroy()
 	{
 		// Game over, go to menu
-		Application.LoadLevel("Menu");
+		Application.LoadLevel(Scenes.MENU);
 	}
 	
 	void OnCollisionEnter2D(Collision2D colision)
