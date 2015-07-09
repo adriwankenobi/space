@@ -17,13 +17,10 @@ public class ExitButtonScript : MonoBehaviour {
 
 	#if UNITY_ANDROID
 
-	/*void Update()
+	void Update()
 	{
-		if (Input.touchCount > 0)
-		{
-			Exit();
-		}
-	}*/
+		MobileExtensions.WhenTouched(gameObject, () => {Exit();});
+	}
 	
 	#endif
 	

@@ -19,10 +19,7 @@ public class PlayButtonScript : MonoBehaviour {
 
 	void Update()
 	{
-		if (Input.touchCount > 0)
-		{
-			LoadLevel();
-		}
+		MobileExtensions.WhenTouched(gameObject, () => {LoadLevel();});
 	}
 	
 	#endif

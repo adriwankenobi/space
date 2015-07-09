@@ -263,8 +263,14 @@ public class Reporter : MonoBehaviour {
 
 	void Awake()
 	{
-		if( !Initialized )
-			Initialize();
+		if (!Debug.isDebugBuild) {
+			Destroy(gameObject);
+		}
+		else
+		{
+			if (!Initialized)
+				Initialize ();
+		}
 	}
 	
 	void OnEnable()
@@ -316,7 +322,7 @@ public class Reporter : MonoBehaviour {
 		}
 		else 
 		{
-			Debug.LogWarning("tow manager is exists delete the second");
+			Debug.LogWarning("two manager is exists delete the second");
 			DestroyImmediate( gameObject ,true);
 			return;
 		}

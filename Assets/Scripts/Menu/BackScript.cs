@@ -11,7 +11,7 @@ public class BackScript : MonoBehaviour {
 	#if UNITY_WEBPLAYER || UNITY_EDITOR
 
 	void OnMouseUpAsButton() {
-		LoadMenu ();
+		LoadMenu();
 	}
 
 	#endif
@@ -20,10 +20,7 @@ public class BackScript : MonoBehaviour {
 
 	void Update()
 	{
-		if (Input.touchCount > 0)
-		{
-			LoadMenu();
-		}
+		MobileExtensions.WhenTouched(gameObject, () => {LoadMenu();});
 	}
 	
 	#endif
