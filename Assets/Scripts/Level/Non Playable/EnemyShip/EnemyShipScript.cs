@@ -36,7 +36,7 @@ public class EnemyShipScript : MonoBehaviour {
 		{
 			foreach (WeaponScript weapon in weapons) {
 				// Auto shoot
-				if (weapon != null && weapon.CanAttack) {
+				if (weapon != null) {
 					weapon.Attack(true);
 				}
 			}

@@ -8,7 +8,6 @@ using System.Collections;
 public class RigibodyMoveItem : MoveItem {
 
 	public enum Type {
-		PLAYER_SHIP,
 		ENEMY_SHIP_TYPE_1,
 		LASER_RED,
 		LASER_BLUE
@@ -18,8 +17,6 @@ public class RigibodyMoveItem : MoveItem {
 	{
 		switch (type)
 		{
-		case Type.PLAYER_SHIP: 
-			return new PlayerShipMoveItem();
 		case Type.ENEMY_SHIP_TYPE_1: 
 			return new EnemyShip1MoveItem();
 		case Type.LASER_RED: 

@@ -10,7 +10,8 @@ public class BackScript : MonoBehaviour {
 
 	#if UNITY_WEBPLAYER || UNITY_EDITOR
 
-	void OnMouseUpAsButton() {
+	void OnMouseDown()
+	{
 		LoadMenu();
 	}
 

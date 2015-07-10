@@ -9,6 +9,7 @@ public class PlayerShipWeaponItem : WeaponItem {
 	public PlayerShipWeaponItem()
 	{
 		_TimeToWaitBetweenShots = 1f;
+		_InitialTimeToWait = 1f;
 		_RotationZ = 0;
 	}
 	

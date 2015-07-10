@@ -8,6 +8,7 @@ using System.Collections;
 public class WeaponItem {
 
 	protected float _TimeToWaitBetweenShots;
+	protected float _InitialTimeToWait;
 	protected int _RotationZ;
 
 	public enum Type {
@@ -40,6 +41,15 @@ public class WeaponItem {
 		}
 		set {
 			_TimeToWaitBetweenShots = value;
+		}
+	}
+
+	public float InitialTimeToWait {
+		get {
+			return _InitialTimeToWait;
+		}
+		set {
+			_InitialTimeToWait = value;
 		}
 	}
 

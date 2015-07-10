@@ -8,7 +8,7 @@ public class PlayButtonScript : MonoBehaviour {
 
 	#if UNITY_WEBPLAYER || UNITY_EDITOR
 	
-	void OnMouseUpAsButton()
+	void OnMouseDown()
 	{
 		LoadLevel();
 	}

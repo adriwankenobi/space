@@ -20,7 +20,7 @@ public class WeaponScript : MonoBehaviour {
 	
 	void Start()
 	{
-		timeBetweenShots = 0f;
+		timeBetweenShots = item.InitialTimeToWait;
 	}
 	
 	void Update()
