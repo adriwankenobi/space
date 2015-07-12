@@ -7,31 +7,15 @@ using System.Collections;
 
 public class BackScript : MonoBehaviour {
 
-
-	#if UNITY_WEBPLAYER || UNITY_EDITOR
-
-	void OnMouseDown()
-	{
-		LoadMenu();
-	}
-
-	#endif
-
-	#if UNITY_ANDROID
-
 	void Update()
 	{
-		MobileExtensions.WhenTouched(gameObject, () => {LoadMenu();});
-	}
-	
-	#endif
-
-	private void LoadMenu()
-	{
-		// Set the time
-		Time.timeScale = 1;
-		
-		// Launch the menu
-		Application.LoadLevel(Scenes.MENU);
+		if (InputExtensions.IsObjectClickedDown(gameObject))
+		{
+			// Set the time
+			Time.timeScale = 1;
+			
+			// Launch the menu
+			Application.LoadLevel(Scenes.MENU);
+		}
 	}
 }

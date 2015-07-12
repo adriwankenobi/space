@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 /*
  * Script for pause button

@@ -9,7 +9,7 @@ public class PlayerShipScript : MonoBehaviour {
 
 	private int speed = 3;
 
-	private bool dragging;
+	public bool dragging;
 	private Vector3 targetPosition;
 
 	void Update()
@@ -20,27 +20,20 @@ public class PlayerShipScript : MonoBehaviour {
 		// If game not paused
 		if (!pauseSript.isPaused) {
 
-			// When mouse down
-			if (Input.GetMouseButtonDown(0)) {
-
-				// Cast a ray from input position 
-				RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint (Input.mousePosition), Vector2.zero);
-
-				// If hit object is selected object
-				if (hit.collider != null && hit.collider.gameObject == gameObject) {
-					dragging = true;
-				}
+			if (InputExtensions.IsObjectClickedDown(gameObject))
+			{
+				dragging = true;
 			}
 
 			if (dragging)
 			{
-				targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+				targetPosition = Camera.main.ScreenToWorldPoint(InputExtensions.GetPosition());
 				targetPosition.z = transform.position.z;
-			}
 
-			// When mouse up
-			if (Input.GetMouseButtonUp(0)) {
-				dragging = false;
+				if (InputExtensions.IsClickedUp())
+				{
+					dragging = false;
+				}
 			}
 
 			// Verify ship is not outside from camera -> limit borders of the camera
