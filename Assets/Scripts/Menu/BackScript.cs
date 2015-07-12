@@ -9,7 +9,7 @@ public class BackScript : MonoBehaviour {
 
 	void Update()
 	{
-		if (InputExtensions.IsObjectClickedDown(gameObject))
+		if (InputExtensions.IsObjectClickedDown(gameObject).Input)
 		{
 			// Set the time
 			Time.timeScale = 1;

@@ -10,14 +10,14 @@ public class ExitButtonScript : MonoBehaviour {
 	
 	void Awake()
 	{
-		Destroy(gameObject);
+		SpaceObjects.Hide(transform);
 	}
 	
 	#endif
 
 	void Update()
 	{
-		if (InputExtensions.IsObjectClickedDown(gameObject))
+		if (InputExtensions.IsObjectClickedDown(gameObject).Input)
 		{
 			// Exit from app
 			Application.Quit();

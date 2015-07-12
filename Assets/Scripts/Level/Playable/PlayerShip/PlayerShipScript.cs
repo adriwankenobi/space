@@ -9,7 +9,8 @@ public class PlayerShipScript : MonoBehaviour {
 
 	private int speed = 3;
 
-	public bool dragging;
+	private bool dragging;
+	private int clickId;
 	private Vector3 targetPosition;
 
 	void Update()
@@ -20,31 +21,30 @@ public class PlayerShipScript : MonoBehaviour {
 		// If game not paused
 		if (!pauseSript.isPaused) {
 
-			if (InputExtensions.IsObjectClickedDown(gameObject))
+			InputExtensions.InputResult clickDown = InputExtensions.IsObjectClickedDown(gameObject);
+			if (clickDown.Input)
 			{
 				dragging = true;
+				clickId = clickDown.InputId;
 			}
 
-			if (dragging)
+			InputExtensions.InputResult click = InputExtensions.IsClicked();
+			if (dragging && click.Input && clickId == click.InputId)
 			{
-				targetPosition = Camera.main.ScreenToWorldPoint(InputExtensions.GetPosition());
+				// Set target to defined position
+				targetPosition = Camera.main.ScreenToWorldPoint(click.Position);
 				targetPosition.z = transform.position.z;
-
-				if (InputExtensions.IsClickedUp())
-				{
-					dragging = false;
-				}
 			}
 
+			InputExtensions.InputResult clickUp = InputExtensions.IsClickedUp();
+			if (dragging && clickUp.Input && clickId == clickUp.InputId)
+			{
+				dragging = false;
+				clickId = InputExtensions.InputResult.INIT_ID;
+			}
+			
 			// Verify ship is not outside from camera -> limit borders of the camera
 			adjustBordersCamera(transform);
-
-			// Weapon needs to attack
-			WeaponScript weapon = GetComponentInChildren<WeaponScript> ();
-			if (weapon != null) {
-				// False because player is not the enemy
-				weapon.Attack(false);
-			}
 		}
 	}
 

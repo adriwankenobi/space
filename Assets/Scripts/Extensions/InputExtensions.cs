@@ -13,8 +13,53 @@ public static class InputExtensions
 		ENDED
 	};
 
-	private static bool GetInput(GameObject gameObject, Phase phase)
+	public class InputResult {
+
+		public const int INIT_ID = -1;
+
+		int _InputId;
+		bool _Input;
+		Vector3 _Position;
+
+		public InputResult()
+		{
+			_InputId = INIT_ID;
+			_Input = false;
+			_Position = Vector3.zero;
+		}
+
+		public int InputId {
+			get {
+				return _InputId;
+			}
+			set {
+				_InputId = value;
+			}
+		}
+
+		public bool Input {
+			get {
+				return _Input;
+			}
+			set {
+				_Input = value;
+			}
+		}
+
+		public Vector3 Position {
+			get {
+				return _Position;
+			}
+			set {
+				_Position = value;
+			}
+		}
+	}
+
+	private static InputResult GetInput(GameObject gameObject, Phase phase)
 	{
+		InputResult result = new InputResult();
+
 		#if UNITY_ANDROID
 
 		if (Input.touchCount > 0)
@@ -23,69 +68,84 @@ public static class InputExtensions
 			{
 				Touch currentTouch = Input.GetTouch(i);
 
-				if (gameObject == null || IsObjectInPosition(gameObject, currentTouch.position))
+				if (validateInput(gameObject, currentTouch.position))
 				{
 					switch (phase)
 					{
 					case Phase.BEGAN: 
-						return currentTouch.phase == TouchPhase.Began;
+						result.Input = currentTouch.phase == TouchPhase.Began;
+						break;
 					case Phase.MOVED: 
-						return currentTouch.phase == TouchPhase.Moved;
+						result.Input = currentTouch.phase == TouchPhase.Moved;
+						break;
 					case Phase.ENDED: 
-						return currentTouch.phase == TouchPhase.Ended;
+						result.Input = currentTouch.phase == TouchPhase.Ended;
+						break;
 					default: 
 						throw new System.ArgumentException("Incorrect InputExtensions.Phase " + phase.ToString());
 					}
 				}
+
+				result.InputId = currentTouch.fingerId;
+				result.Position = currentTouch.position;
 			}
 		}
-
-		return false;
 
 		#endif
 
 		#if UNITY_WEBPLAYER || UNITY_EDITOR
 		
-		if (gameObject == null || IsObjectInPosition(gameObject, Input.mousePosition))
+		if (validateInput(gameObject, Input.mousePosition))
 		{
 			switch (phase)
 			{
 			case Phase.BEGAN: 
-				return Input.GetMouseButtonDown(0);
+				result.Input = Input.GetMouseButtonDown(0);
+				break;
 			case Phase.MOVED: 
-				return Input.GetMouseButton(0);
+				result.Input = Input.GetMouseButton(0);
+				break;
 			case Phase.ENDED: 
-				return Input.GetMouseButtonUp(0);
+				result.Input = Input.GetMouseButtonUp(0);
+				break;
 			default: 
 				throw new System.ArgumentException("Incorrect InputExtensions.Phase " + phase.ToString());
 			}
 		}
-		
-		return false;
-		
+
+		result.Position = Input.mousePosition;
+
 		#endif
+
+		return result;
 	}
 
-	public static Vector3 GetPosition()
+	private static bool validateInput(GameObject gameObject, Vector3 position)
 	{
-		#if UNITY_ANDROID
-		
-		if (Input.touchCount > 0)
-		{
-			for(int i = 0; i < Input.touchCount; i++)
+
+		bool validated = true;
+
+		if (gameObject == null) {
+			// validate it's anywhere except ButtonsPlane
+
+			// Get all buttons in buttonsPlane
+			Component[] buttons = GameObject.Find(SpaceObjects.BUTTONS_PLANE).GetComponentsInChildren<Collider2D>();
+			for(int i = 0; i < buttons.Length; i++)
 			{
-				Touch currentTouch = Input.GetTouch(i);
-				return currentTouch.position;
+				// If position is inside the button, skip
+				if (IsObjectInPosition(buttons[i].gameObject, position))
+				{
+					validated = false;
+					break;
+				}
 			}
+		} 
+		else {
+			// Validate position is inside the object
+			validated = IsObjectInPosition(gameObject, position);
 		}
-		
-		#endif
-		
-		#if UNITY_WEBPLAYER || UNITY_EDITOR
-		
-		return Input.mousePosition;
-		
-		#endif
+
+		return validated;
 	}
 
 	private static bool IsObjectInPosition(GameObject gameObject, Vector3 position)
@@ -98,32 +158,51 @@ public static class InputExtensions
 
 	}
 
-	public static bool IsObjectClickedDown(GameObject gameObject)
+	public static bool IsFired(GameObject gameObject)
+	{
+		bool input = false;
+
+		#if UNITY_ANDROID
+		
+		input = GetInput(gameObject, Phase.BEGAN).Input;
+		
+		#endif
+
+		#if UNITY_WEBPLAYER || UNITY_EDITOR
+
+		input = Input.GetKeyDown(KeyCode.F);
+
+		#endif
+
+		return input;
+	}
+
+	public static InputResult IsObjectClickedDown(GameObject gameObject)
 	{
 		return GetInput(gameObject, Phase.BEGAN);
 	}
 
-	public static bool IsClickedDown()
+	public static InputResult IsClickedDown()
 	{
 		return GetInput(null, Phase.BEGAN);
 	}
 
-	public static bool IsObjectClicked(GameObject gameObject)
+	public static InputResult IsObjectClicked(GameObject gameObject)
 	{
 		return GetInput(gameObject, Phase.MOVED);
 	}
 
-	public static bool IsClicked()
+	public static InputResult IsClicked()
 	{
 		return GetInput(null, Phase.MOVED);
 	}
 
-	public static bool IsObjectClickedUp(GameObject gameObject)
+	public static InputResult IsObjectClickedUp(GameObject gameObject)
 	{
 		return GetInput(gameObject, Phase.ENDED);
 	}
 
-	public static bool IsClickedUp()
+	public static InputResult IsClickedUp()
 	{
 		return GetInput(null, Phase.ENDED);
 	}
