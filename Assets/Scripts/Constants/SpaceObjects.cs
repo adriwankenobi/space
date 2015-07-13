@@ -13,8 +13,8 @@ public class SpaceObjects {
 
 	public static void Hide(Transform transform)
 	{
-		transform.position = new Vector3(transform.position.x,
-		                                 transform.position.y,
+		transform.position = new Vector3(Camera.main.gameObject.transform.position.x + 10,
+		                                 Camera.main.gameObject.transform.position.y - 5,
 		                                 GameObject.Find(BACKGROUND_PLANE).transform.position.z + 1);
 	}
 }
