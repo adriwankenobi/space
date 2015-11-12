@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 Build from ASUS-PC at 11/12/2015 7:26:49 PM
+=======
+Build from ADRIAN-PC at 7/13/2015 4:06:36 PM
+>>>>>>> db3291c2d96e05739402198c131435550877b1ca

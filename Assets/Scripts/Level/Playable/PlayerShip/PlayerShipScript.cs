@@ -11,6 +11,8 @@ public class PlayerShipScript : MonoBehaviour {
 
 	private bool dragging;
 	private int clickId;
+	private Vector3 originalShipPosition;
+	private Vector3 lastClickPosition;
 	private Vector3 targetPosition;
 
 	void Update()
@@ -21,19 +23,27 @@ public class PlayerShipScript : MonoBehaviour {
 		// If game not paused
 		if (!pauseSript.isPaused) {
 
-			InputExtensions.InputResult clickDown = InputExtensions.IsObjectClickedDown(gameObject);
+			InputExtensions.InputResult clickDown = InputExtensions.IsClickedDown();
 			if (clickDown.Input)
 			{
 				dragging = true;
 				clickId = clickDown.InputId;
+				lastClickPosition = Camera.main.ScreenToWorldPoint(clickDown.Position);
+				lastClickPosition = new Vector3(lastClickPosition.x,
+				                                lastClickPosition.y,
+				                           		transform.position.z);
+				originalShipPosition = transform.position;
+
 			}
 
 			InputExtensions.InputResult click = InputExtensions.IsClicked();
 			if (dragging && click.Input && clickId == click.InputId)
 			{
-				// Set target to defined position
-				targetPosition = Camera.main.ScreenToWorldPoint(click.Position);
-				targetPosition.z = transform.position.z;
+				// Set target to defined position (difference since current and last clicked, referenced from player ship position)
+				Vector3 currentTargetPosition = Camera.main.ScreenToWorldPoint(click.Position);
+				targetPosition = new Vector3(originalShipPosition.x + currentTargetPosition.x - lastClickPosition.x,
+				                             originalShipPosition.y + currentTargetPosition.y - lastClickPosition.y,
+				                             transform.position.z);
 			}
 
 			InputExtensions.InputResult clickUp = InputExtensions.IsClickedUp();
