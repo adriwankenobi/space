@@ -1,4 +1,10 @@
 # =============== #
+# Build generated #
+# =============== #
+Assets/StreamingAssets/build_info.txt
+Assets/StreamingAssets/build_info.txt.meta
+
+# =============== #
 # Unity generated #
 # =============== #
 Temp/
@@ -6,9 +12,9 @@ Obj/
 UnityGenerated/
 Library/
   
-# ===================================== #
-# Visual Studio / MonoDevelop generated #
-# ===================================== #
+# ===================== #
+# MonoDevelop generated #
+# ===================== #
 ExportedObj/
 *.svd
 *.userprefs
