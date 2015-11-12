@@ -7,7 +7,6 @@ using UnityEngine;
 public class SpaceObjects {
 
 	public const string BACKGROUND_PLANE = "BackgroundPlane";
-	public const string BUTTONS_PLANE = "ButtonsPlane";
 	public const string PAUSE_MENU = "PauseMenu";
 	public const string PLAYER_SHIP = "PlayerShip";
 

@@ -125,22 +125,8 @@ public static class InputExtensions
 
 		bool validated = true;
 
-		if (gameObject == null) {
-			// validate it's anywhere except ButtonsPlane
+		if (gameObject != null) {
 
-			// Get all buttons in buttonsPlane
-			Component[] buttons = GameObject.Find(SpaceObjects.BUTTONS_PLANE).GetComponentsInChildren<Collider2D>();
-			for(int i = 0; i < buttons.Length; i++)
-			{
-				// If position is inside the button, skip
-				if (IsObjectInPosition(buttons[i].gameObject, position))
-				{
-					validated = false;
-					break;
-				}
-			}
-		} 
-		else {
 			// Validate position is inside the object
 			validated = IsObjectInPosition(gameObject, position);
 		}
@@ -164,7 +150,7 @@ public static class InputExtensions
 
 		#if UNITY_ANDROID
 		
-		input = GetInput(gameObject, Phase.BEGAN).Input;
+		input = GetInput(null, Phase.BEGAN).Input && !GetInput(gameObject, Phase.BEGAN).Input;
 		
 		#endif
 
